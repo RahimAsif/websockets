@@ -17,8 +17,9 @@ async def server(websocket, path):
         # Sending the data to the client
         await websocket.send(data)
 
-        # Waiting for 1 second before sending the next set of variables
-        await asyncio.sleep(0.25)
+        # Waiting for 0.1-1 second before sending the next set of variables
+        wait_time = (random.randint(25, 1000)) / 1000
+        await asyncio.sleep(wait_time)
 
 start_server = websockets.serve(server, 'localhost', 8765)
 
